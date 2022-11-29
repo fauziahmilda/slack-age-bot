@@ -32,8 +32,8 @@ func main() {
 
 	bot.Command("my year of birth is <year>", &slacker.CommandDefinition{
 		Description: "year of birth calculator",
-		Example:     "my year of birth is 1998",
-		Handler: func(botCtx slacker.Botcontext, request slacker.Request, response slacker.ResponseWriter) {
+		Examples:    []string{"my year of birth is 1998"},
+		Handler: func(botCtx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
 			year := request.Param("year")
 			yob, err := strconv.Atoi(year)
 			if err != nil {
