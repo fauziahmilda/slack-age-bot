@@ -22,17 +22,17 @@ func printCommandEvents(analyticsChannel <-chan *slacker.CommandEvent) {
 }
 
 func main() {
-	os.Setenv("SLACK_BOT_TOKEN", "xoxb-4439748214674-4463554075744-aPlGy1T44ibC6ZQocrw9RJEf")                                         //this is bot token
-	os.Setenv("SLACK_APP_TOKEN", "xapp-1-A04DACL7NDP-4442258537636-564e34b440c005bcbc8c1154c60c19f630a035f293501207a74e248f22762b52") //this is socket token
+	os.Setenv("SLACK_BOT_TOKEN", "xoxb-4439748214674-4463554075744-p9AjbGY6HPxdUnRij98oK7zo")                                         //this is bot token
+	os.Setenv("SLACK_APP_TOKEN", "xapp-1-A04DACL7NDP-4440198443794-33608624ef220ec47cc8c8147fa73dc0efa1c9b51c5c52155e3754cd2fd2b70b") //this is socket token
 
 	//create a bot
 	bot := slacker.NewClient(os.Getenv("SLACK_BOT_TOKEN"), os.Getenv("SLACK_APP_TOKEN")) //just make more extensible
 
 	go printCommandEvents(bot.CommandEvents())
 
-	bot.Command("my year of birth is <year>", &slacker.CommandDefinition{
-		Description: "year of birth calculator",
-		Examples:    []string{"my year of birth is 1998"},
+	bot.Command("my yob is <year>", &slacker.CommandDefinition{
+		Description: "yob calculator",
+		Examples:    []string{"my yob is 2020"},
 		Handler: func(botCtx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
 			year := request.Param("year")
 			yob, err := strconv.Atoi(year)
